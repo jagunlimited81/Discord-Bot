@@ -352,6 +352,22 @@ async def watch(ctx, *, film):
 
 
 @client.command()
+async def play(ctx, *, game):
+    global didcommand
+    didcommand = True
+    activity = discord.Activity(name=game, type=discord.ActivityType.playing)
+    await client.change_presence(activity=activity)
+
+
+@client.command(aliases=["listen"])
+async def listen_to(ctx, *, music):
+    global didcommand
+    didcommand = True
+    activity = discord.Activity(name=music, type=discord.ActivityType.listening)
+    await client.change_presence(activity=activity)
+
+
+@client.command()
 async def meme(ctx, subreddit="dankmemes", sort="hot"):
     global didcommand
     didcommand = True
