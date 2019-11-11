@@ -1,8 +1,9 @@
 # bot.py
 import configparser
+import random
+
 import discord
 import praw
-import random
 from discord.ext import commands
 
 # Discord
@@ -22,7 +23,7 @@ didcommand = False
 def initialize():
     global TOKEN, MENTION, BOT_PREFIX, client, reddit
     config = configparser.ConfigParser()
-    config.read("keys.txt")
+    config.read("../config/keys.txt")
     # Discord config
     TOKEN = config["Discord"]["token"]
     MENTION = config["Discord"]["mention"]
@@ -227,7 +228,7 @@ async def on_message(message):
     for company in companies:
         if company.lower() in loweredmessage.replace("'", ""):
             await message.channel.send("SILENCE, BRAND!!!")
-            await message.channel.send(file=discord.File("brand.jpg"))
+            await message.channel.send(file=discord.File("../images/brand.jpg"))
             return
 
     # dadbot hello son, I am dad!
@@ -391,7 +392,7 @@ async def rate(ctx, *, movie):
         filename = "badratings.txt"
     else:
         filename = "neutralratings.txt"
-    with open(filename) as file:
+    with open("../text/" + filename) as file:
         responses = (line.rstrip() for line in file)
         responses = list(line for line in responses if line)  # Non-blank lines in a list
     file.close()
@@ -423,7 +424,7 @@ async def addrateresponse(ctx, parameter="-n", *, rating):
         await ctx.send("Syntax is @Pubert ars parameter 'sentence'")
         await ctx.send("The available parameters are -n(eutral) -g(ood) -b(bad)")
         return
-    with open(filename, "a") as f:
+    with open("../text/"+filename, "a") as f:
         f.write(rating + "\n")
     f.close()
     await ctx.send(f"added {rating}")
