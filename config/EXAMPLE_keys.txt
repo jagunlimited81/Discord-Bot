@@ -1,0 +1,11 @@
+[Discord]
+token = DISCORD TOKEN
+mention = <@!634570012323414569>------or whatever number your bot is when it talks
+BOT_PREFIX = DEFAULT------default is a mention
+
+[Reddit]
+client_id = CLIENT_ID
+client_secret = CLIENT_SECRET
+user_agent = Pubert Bot on Discord/0.1 by jagunlimited81
+username = USERNAME
+password = PASSWORD
